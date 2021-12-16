@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo liên kết tải file trực tiếp trên Google Drive</title>
+    <style>
+        :root {
+    background: #f5f6fa;
+    color: #9c9c9c;
+    font: 1rem "PT Sans", sans-serif;
+}
+html, body, .container {
+    height: 100%;
+}
+p{
+    word-break: break-all;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+.btn {
+    display: inline-block;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    transition: all 200ms ease-in;
+    cursor: pointer;
+}
+
+.btn--primary {
+    background: #7f8ff4;
+    color: #fff;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
+    border-radius: 2px;
+    padding: 12px 36px;
+}
+.btn--primary:hover {
+    background: #6c7ff2;
+}
+.btn--primary:active {
+    background: #7f8ff4;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
+}
+.form__field {
+    width: 860px;
+    background: #fff;
+    color: #a3a3a3;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .1);
+    border: 0;
+    outline: 0;
+    padding: 22px 18px;
+}
+.form__field2 {
+    width: 560px;
+    max-width: 80%;
+    background: #fff;
+    color: #a3a3a3;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .1);
+    border: 0;
+    outline: 0;
+    padding: 22px 18px;
+}
+@media screen and (max-width: 768px) {
+    .container {
+        width: auto;
+    }
+    .form__field {
+        width: auto;
+    }
+    .form__field2{
+        width: auto;
+    }
+    .form-destination {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+    </style>
+    <script>
+        function getLinkDownloadGgDrive(input) {
+    const BASE_URL = "https://drive.google.com/uc?export=download&id="
+    var result = BASE_URL + input;
+    document.getElementById("myInput").value = result;
+}
+function getLinkViewGgDrive(input) {
+    const BASE_URL = "https://drive.google.com/uc?export=view&id="
+    var result = BASE_URL + input;
+    document.getElementById("myInput2").value = result;
+}
+function splitLink() {
+    var dataInput = document.getElementById("link").value;
+    var url = dataInput.split('/');
+    var resultID = url[url.length - 2];
+    getLinkDownloadGgDrive(resultID)
+}
+function splitLink2() {
+    var dataInput = document.getElementById("view").value;
+    var url = dataInput.split('/');
+    var resultID = url[url.length - 2];
+    getLinkViewGgDrive(resultID)
+}
+function copyText(that) {
+    var copyText = that.closest('form').querySelector('.form__field2'); 
+    copyText.select();
+    navigator.clipboard.writeText(copyText.value);
+}
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Công cụ miễn phí giúp bạn dễ dàng lấy link download trực tiếp từ ggdrive một cách dễ dàng.</h2>
+        <p>https://drive.google.com/file/d/1cxH5lrnHMgVa9YrphF03dcMvvuPF_vTH/view</p>
+        <div class="container__item">
+            <form class="form">
+                <input type="text" id="link" class="form__field" placeholder="Nhập link cần get ở đây" />
+                <button type="button" onclick="splitLink()" class="btn btn--primary btn--inside uppercase">Send</button>
+            </form>
+        </div>
+        <br>
+        <form class="form">
+            <input type="text" id="myInput" class="form__field2" placeholder="Copy link ở đây" />
+            <button type="button" id="myBtn" onclick="copyText(this)" class="btn btn--primary">Copy now</button>
+        </form>
+        <br>
+        <h2>Công cụ miễn phí giúp bạn dễ dàng lấy link view trực tiếp từ ggdrive một cách dễ dàng.</h2>
+        <div class="container__item">
+            <form class="form">
+                <input type="text" id="view" class="form__field" placeholder="Nhập link cần get ở đây" />
+                <button type="button" onclick="splitLink2()" class="btn btn--primary btn--inside uppercase">Send</button>
+            </form>
+        </div>
+        <br>
+        <form class="form">
+            <input type="text" id="myInput2" class="form__field2" placeholder="Copy link ở đây" />
+            <button type="button" id="myBtn" onclick="copyText(this)" class="btn btn--primary">Copy now</button>
+        </form>
+    </div>
+</body>
+</html>
