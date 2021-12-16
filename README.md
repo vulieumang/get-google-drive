@@ -1,2 +1,6 @@
 # get-google-drive
-Get url drive to stream or view
+edit from https://github.com/eotih/GetLinkDownloadGGDrive
+thank you for great idea
+
+Get url drive to stream, download or view
+
